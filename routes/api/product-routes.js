@@ -25,7 +25,7 @@ try {
 // get one product
 router.get('/:id', async (req, res) => {
 try {
-  const productData = await Product.findByPk({
+  const productData = await Product.findByPk(req.params.id, {
     include: [
     {
       model: Category
@@ -118,7 +118,7 @@ try {
       id: req.params.id
     }
   });
-    if (!productData) {
+    if (!productDelete) {
       res.status(404).json({ message: 'Error! No Product found with that ID!' });
       return;
     }
